@@ -45,30 +45,6 @@ module.exports = {
         name: '4Bed/2Bath',
         description: 'third house',
         price: 700
-      },
-      {
-        ownerId: 1,
-        address: 'D street',
-        city: 'Los Angeles',
-        state: 'CA',
-        country: 'US',
-        lat: 1,
-        lng : 1,
-        name: '4Bed/4Bath',
-        description: 'fourth house',
-        price: 900
-      },
-      {
-        ownerId: 3,
-        address: ' E street',
-        city: 'Riverside',
-        state: 'CA',
-        country: 'US',
-        lat: 1,
-        lng : 1,
-        name: '8Bed/7Bath',
-        description: 'fifth house',
-        price: 900
       }
     ])
   },
@@ -77,7 +53,7 @@ module.exports = {
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      name: { [Op.in]: ['2Bed/2Bath', '1Bed/1Bath', '4Bed/2Bath', '4Bed/4Bath', '8Bed/7Bath'] }
+      name: { [Op.in]: ['2Bed/2Bath', '1Bed/1Bath', '4Bed/2Bath'] }
     }, {})
   }
 };
