@@ -32,13 +32,13 @@ module.exports = {
       },
       {
         spotId:4,
-        userId:4,
+        userId:2,
         startDate: '2021-10-25',
         endDate:'2021-10-27'
       },
       {
         spotId:5,
-        userId:5,
+        userId:1,
         startDate: '2021-11-15',
         endDate:'2021-11-20'
       }
