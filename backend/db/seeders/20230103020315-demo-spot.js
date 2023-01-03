@@ -16,8 +16,8 @@ module.exports = {
         city: 'Irvine',
         state: 'CA',
         country: 'US',
-        lat: 0,
-        lng : 0,
+        lat: 1,
+        lng : 1,
         name: '2Bed/2Bath',
         description: 'first house',
         price: 500
@@ -40,8 +40,8 @@ module.exports = {
         city: 'San Francisco',
         state: 'CA',
         country: 'US',
-        lat: 0,
-        lng : 0,
+        lat: 1,
+        lng : 1,
         name: '4Bed/2Bath',
         description: 'third house',
         price: 700
@@ -52,8 +52,8 @@ module.exports = {
         city: 'Los Angeles',
         state: 'CA',
         country: 'US',
-        lat: 0,
-        lng : 0,
+        lat: 1,
+        lng : 1,
         name: '4Bed/4Bath',
         description: 'fourth house',
         price: 900
@@ -64,8 +64,8 @@ module.exports = {
         city: 'Riverside',
         state: 'CA',
         country: 'US',
-        lat: 0,
-        lng : 0,
+        lat: 1,
+        lng : 1,
         name: '8Bed/7Bath',
         description: 'fifth house',
         price: 900
