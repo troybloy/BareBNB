@@ -28,8 +28,8 @@ module.exports = {
         city: 'Irvine',
         state: 'CA',
         country: 'US',
-        lat: 0,
-        lng : 0,
+        lat: 1,
+        lng : 1,
         name: '1Bed/1Bath',
         description: 'second house',
         price: 200
