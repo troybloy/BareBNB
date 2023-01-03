@@ -13,13 +13,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AntVith/API-project.git"
+    "url": "git+https://github.com/troybloy/Airbnb_Project.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AntVith/API-project/issues"
+    "url": "https://github.com/troybloy/Airbnb_Project/issues"
   },
   "homepage": "https://github.com/AntVith/API-project#readme"
 }
