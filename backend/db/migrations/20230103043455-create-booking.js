@@ -51,4 +51,5 @@ module.exports = {
     options.tableName = 'Bookings'
     await queryInterface.dropTable(options, options);
   }
+  
 };
