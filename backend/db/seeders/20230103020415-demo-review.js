@@ -19,7 +19,7 @@ module.exports = {
       },
       {
         userId: 2,
-        spotId: 1,
+        spotId: 2,
         review: "This was an amazing spot!",
         stars: 3,
       },
@@ -28,12 +28,6 @@ module.exports = {
         spotId: 3,
         review: "This was an amazinggg spot!",
         stars: 2,
-      },
-      {
-        userId: 3,
-        spotId: 4,
-        review: "This was an amazingggg spot!",
-        stars: 5,
       }
     ], {})
   },
