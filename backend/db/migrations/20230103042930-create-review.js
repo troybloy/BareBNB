@@ -1,39 +1,50 @@
 'use strict';
-/** @type {import('sequelize-cli').Migration} */
+
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
+
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Reviews', {
+    await queryInterface.createTable('Spots', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      spotId: {
+      ownerId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references:{
-          model: 'Spots'
-        }
+        references: {model: 'Users'},
+        onDelete: 'CASCADE'
       },
-      userId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references:{
-          model: 'Users'
-        }
+      address: {
+        type: Sequelize.STRING
       },
-      review: {
-        type: Sequelize.STRING,
-        allowNull: false,
+      city: {
+        type: Sequelize.STRING
       },
-      stars: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+      state: {
+        type: Sequelize.STRING
+      },
+      country: {
+        type: Sequelize.STRING
+      },
+      lat: {
+        type: Sequelize.DECIMAL
+      },
+      lng: {
+        type: Sequelize.DECIMAL
+      },
+      name: {
+        type: Sequelize.STRING
+      },
+      description: {
+        type: Sequelize.STRING
+      },
+      price: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -48,7 +59,7 @@ module.exports = {
     }, options);
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = 'Reviews'
-    await queryInterface.dropTable(options, options);
+    options.tableName = "Spots"
+    await queryInterface.dropTable(options);
   }
 };
