@@ -1,5 +1,4 @@
 'use strict';
-/** @type {import('sequelize-cli').Migration} */
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
@@ -15,25 +14,19 @@ module.exports = {
       },
       spotId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references:{
-          model: 'Spots'
-        }
+        references: {model: 'Spots'},
+        onDelete: 'CASCADE'
       },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references:{
-          model: 'Users'
-        }
+        references: {model: 'Users'},
+        onDelete: 'CASCADE'
       },
       review: {
-        type: Sequelize.STRING,
-        allowNull: false,
+        type: Sequelize.STRING
       },
       stars: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -48,7 +41,7 @@ module.exports = {
     }, options);
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = 'Reviews'
-    await queryInterface.dropTable(options, options);
+    options.tableName = "Reviews"
+    await queryInterface.dropTable(options);
   }
 };
