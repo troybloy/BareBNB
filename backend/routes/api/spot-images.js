@@ -30,7 +30,7 @@ router.delete('/:spotImageId', requireAuth, async (req, res, next) => {
         return next(err)
     }
 
-    if (spotImageQueryTest.dataValues.Spot.dataValues.ownerId !== loggedInUserId)  {
+    if (spotCheck.dataValues.Spot.dataValues.ownerId !== loggedInUserId)  {
         const err = new Error()
         err.message = "Spot must belong to the current User"
         err.status = 403
@@ -38,7 +38,7 @@ router.delete('/:spotImageId', requireAuth, async (req, res, next) => {
         return next(err)
     }
 
-    await spotImageQueryTest.destroy()
+    await spotCheck.destroy()
     res.json({message: "Successfully deleted"})
 })
 
