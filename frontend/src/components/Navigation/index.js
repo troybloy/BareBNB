@@ -7,17 +7,33 @@ import './Navigation.css';
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
+  const disableNavLinks = (e) => {
+    if(!sessionUser) e.preventDefault()
+  }
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-      </li>
+    <div id='NavBar'>
+      <div id='HomeButton'>
+        <NavLink
+        id='HomeButtonNavLink'
+        style={{ textDecoration: 'none' }}
+        exact to="/">Troybnb</NavLink>
+      </div>
+      <div id='RightSide'>
+
+      {sessionUser &&
+      <NavLink
+      id='Hosting'
+      style={{ textDecoration: 'none' }}
+      exact to='/spots'
+      onClick={disableNavLinks}
+      >Troybnb your home</NavLink>}
       {isLoaded && (
-        <li>
+        <div id='ProfileButton'>
           <ProfileButton user={sessionUser} />
-        </li>
+        </div>
       )}
-    </ul>
+      </div>
+    </div>
   );
 }
 
