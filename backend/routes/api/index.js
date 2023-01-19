@@ -1,58 +1,44 @@
-const router = require('express').Router();
-const sessionRouter = require('./session.js');
-const usersRouter = require('./users.js');
-const spotsRouter = require('./spots.js')
-const reviewsRouter = require('./reviews.js')
-const bookingsRouter = require('./bookings.js')
-const spotImagesrouter = require('./spot-images.js')
-const reviewImagesRouter = require('./review-images')
-const { restoreUser } = require("../../utils/auth.js");
+const express = require('express');
+const router = express.Router();
+const apiRouter = require('./api');
 
+router.use('/api', apiRouter);
 
-
-router.use(restoreUser);
-
-router.use('/session', sessionRouter);
-router.use('/users', usersRouter);
-router.use('/spots', spotsRouter)
-router.use('/reviews', reviewsRouter);
-router.use('/bookings', bookingsRouter)
-router.use('/spot-images', spotImagesrouter)
-router.use('/review-images', reviewImagesRouter)
-
-
-
-router.get(
-  '/restore-user',
-  (req, res) => {
-    return res.json(req.user);
-  }
-);
-
-const { requireAuth } = require('../../utils/auth.js');
-router.get(
-  '/require-auth',
-  requireAuth,
-  (req, res) => {
-    return res.json(req.user);
-  }
-);
-
-
-router.post('/test', function(req, res) {
-    res.json({ requestBody: req.body });
+// Static routes
+// Serve React build files in production
+if (process.env.NODE_ENV === 'production') {
+  const path = require('path');
+  // Serve the frontend's index.html file at the root route
+  router.get('/', (req, res) => {
+    res.cookie('XSRF-TOKEN', req.csrfToken());
+    res.sendFile(
+      path.resolve(__dirname, '../../frontend', 'build', 'index.html')
+    );
   });
 
-const { setTokenCookie } = require('../../utils/auth.js');
-const { User } = require('../../db/models');
-router.get('/set-token-cookie', async (_req, res) => {
-  const user = await User.findOne({
-      where: {
-        username: 'Demo-lition'
-      }
-    });
-  setTokenCookie(res, user);
-  return res.json({ user: user });
-});
+  // Serve the static assets in the frontend's build folder
+  router.use(express.static(path.resolve("../frontend/build")));
+
+  // Serve the frontend's index.html file at all other routes NOT starting with /api
+  router.get(/^(?!\/?api).*/, (req, res) => {
+    res.cookie('XSRF-TOKEN', req.csrfToken());
+    res.sendFile(
+      path.resolve(__dirname, '../../frontend', 'build', 'index.html')
+    );
+  });
+}
+
+// Add a XSRF-TOKEN cookie in development
+if (process.env.NODE_ENV !== 'production') {
+  router.get('/api/csrf/restore', (req, res) => {
+    res.cookie('XSRF-TOKEN', req.csrfToken());
+    res.status(201).json({});
+  });
+}
 
 module.exports = router;
+
+
+
+
+npm install && npm run render-postbuild && npm run build && npm run sequelize --prefix backend db:migrate && npm run sequelize --prefix backend db:seed:all
