@@ -41,4 +41,3 @@ module.exports = router;
 
 
 
-npm install && npm run render-postbuild && npm run build && npm run sequelize --prefix backend db:migrate && npm run sequelize --prefix backend db:seed:all
