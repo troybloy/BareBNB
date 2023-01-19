@@ -1,39 +1,34 @@
-.sign-up {
-    margin: 0 auto;
+#modal-content{
+    height: 500px;
+    width:400px
+}
+
+#SignUpFormDiv {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
-
-form {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+#signUpTitle{
+    color:red;
+    margin-bottom: 40px;
 }
-
-ul {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.form-label {
-    width: 100%;
-    margin-bottom: 10px;
+#SignUpFormInputs{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
-
-.submit-label {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+#confirmpassword, #password, #lastname, #firstname, #SignUpusername, #SignUpemail{
+    border-radius: 5px;
+    /* margin-bottom: 5px; */
+    width:300px;
+    height:25px;
 }
-
-/* input {
-    width: 100%;
-    padding: 10px;
-    align-items: center;
-} */
+#SignUpSubmit{
+    background-color: red;
+    color:white;
+    width:308px;
+    height:25px;
+    border-radius: 5px;
+}
