@@ -13,43 +13,18 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         spotId: 1,
-        url: "https://a0.muscache.com/im/pictures/miso/Hosting-21409981/original/a8fa243d-dac8-4238-93e5-f7aa33072ff8.jpeg?im_w=720",
-        preview: true
-      },
-      {
-        spotId: 1,
-        url: "spot-1-picture-2",
-        preview: false
-      },
-      {
-        spotId: 2,
-        url: "https://a0.muscache.com/im/pictures/128c623f-c401-4aa4-80bc-446165fd6884.jpg?im_w=720",
+        url: "https://media.istockphoto.com/id/182476243/photo/abandoned-towels-on-sandy-beach.jpg?s=612x612&w=0&k=20&c=WLbaxX1-8cAoRTMAHwb3RI-dBdJo0obmVGILcBhLwks=",
         preview: true
       },
       {
         spotId: 2,
-        url: "spot-2-picture-2",
-        preview: false
-      },
-      {
-        spotId: 3,
-        url: "https://a0.muscache.com/im/pictures/miso/Hosting-46695796/original/38bc8081-9415-453a-b8bf-9f4aeb146819.jpeg?im_w=720",
+        url: "https://www.scienceabc.com/wp-content/uploads/2021/12/igloo-2021-08-26-17-02-27-utc.jpg",
         preview: true
       },
       {
         spotId: 3,
-        url: "spot-3-picture-2",
-        preview: false
-      },
-      {
-        spotId: 4,
-        url: "spot-4-picture-1",
+        url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.missminimalist.com%2F2009%2F11%2Fminimalist-furniture-the-bare-essentials%2F&psig=AOvVaw1TRdo2qz0MaljkNU7Dga_-&ust=1674275882656000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCLi15Oup1fwCFQAAAAAdAAAAABAO",
         preview: true
-      },
-      {
-        spotId: 5,
-        url: "spot-5-picture-1",
-        preview: false
       }
 
     ], {});
