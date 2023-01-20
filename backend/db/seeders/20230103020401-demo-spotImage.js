@@ -23,7 +23,7 @@ module.exports = {
       },
       {
         spotId: 3,
-        url: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.missminimalist.com%2F2009%2F11%2Fminimalist-furniture-the-bare-essentials%2F&psig=AOvVaw1TRdo2qz0MaljkNU7Dga_-&ust=1674275882656000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCLi15Oup1fwCFQAAAAAdAAAAABAO",
+        url: "https://content.mattressadvisor.com/wp-content/uploads/2019/08/floor-mattress-1024x665.jpeg",
         preview: true
       }
 
