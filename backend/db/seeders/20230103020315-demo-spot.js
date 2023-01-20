@@ -12,39 +12,39 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         ownerId: 1,
-        address: 'A Street',
-        city: 'Irvine',
+        address: 'unknown',
+        city: 'Newport Beach',
         state: 'CA',
         country: 'US',
         lat: 1,
         lng : 1,
-        name: '2Bed/2Bath',
-        description: 'first house',
-        price: 500
+        name: 'Beach Towel',
+        description: 'Incredibly lush beach towel on the fine coast of Newport',
+        price: 1500
       },
       {
         ownerId: 2,
-        address: 'B street',
-        city: 'Irvine',
-        state: 'CA',
-        country: 'US',
+        address: 'unknown2',
+        city: 'North Pole',
+        state: 'Arctic Ocean',
+        country: 'Unclaimed',
         lat: 1,
         lng : 1,
-        name: '1Bed/1Bath',
-        description: 'second house',
-        price: 200
+        name: 'Igloo',
+        description: 'Artisan-crafted Igloo equipped with snowshoes and heated flooring',
+        price: 2200
       },
       {
         ownerId: 3,
-        address: 'C street',
-        city: 'San Francisco',
+        address: '2405 Fulton St',
+        city: 'Berkeley',
         state: 'CA',
         country: 'US',
         lat: 1,
         lng : 1,
-        name: '4Bed/2Bath',
-        description: 'third house',
-        price: 700
+        name: 'Instagrammable Minimalist Room',
+        description: 'An extremely bare room -- bedsheets and chair not included. Bed itself can be included for an additional fee',
+        price: 3700
       }
     ])
   },
@@ -53,7 +53,7 @@ module.exports = {
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      name: { [Op.in]: ['2Bed/2Bath', '1Bed/1Bath', '4Bed/2Bath'] }
+      name: { [Op.in]: ['Beach Towel', 'Igloo', 'Instagrammable Minimalist Room'] }
     }, {})
   }
 };
