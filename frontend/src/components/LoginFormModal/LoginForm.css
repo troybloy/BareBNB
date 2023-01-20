@@ -1,38 +1,38 @@
-.login {
-    margin: 0 auto;
+#modal-content{
+    border: solid red;
+    border-radius:20px;
+    height: 500px;
+    width: 300px;
+}
+
+#logInFull{
     display: flex;
     flex-direction: column;
+    /* border: solid red; */
+    /* border-radius:20px; */
+    justify-content: center;
     align-items: center;
 }
 
-form {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-ul {
+#logInForm {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    /* padding: 30px; */
+}
+#logInTitle{
+    color:red
+}
+#usernameOrEmailField, #passwordField{
+    width:200px;
+    height:30px;
+    border-radius: 5px;
 }
 
-.form-label2 {
-    width: 100%;
+#logInButton, #DemoUserButton{
     margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: red;;
+    color:white;
+    width:208px;
+    height:30px;
+    border-radius: 5px;
 }
-
-.submit-button {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* input {
-    width: 100%;
-    padding: 10px;
-} */

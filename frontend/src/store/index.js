@@ -1,9 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import sessionReducer from './session';
+import spotReducer from './spots';
+import reviewReducer from './reviews';
 
 const rootReducer = combineReducers({
-    session: sessionReducer
+    session: sessionReducer,
+    spots: spotReducer,
+    reviews: reviewReducer
 });
 
 let enhancer;
@@ -13,13 +17,13 @@ if (process.env.NODE_ENV === 'production') {
 } else {
     const logger = require('redux-logger').default;
     const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 }
 
-// This function will be used by index.js to attach redux store to react application
+
 const configureStore = (preloadedState) => {
-    return createStore(rootReducer, preloadedState, enhancer)
-}
+    return createStore(rootReducer, preloadedState, enhancer);
+};
 
 export default configureStore;
