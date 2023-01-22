@@ -58,7 +58,7 @@ if(!spot.Owner) return null
             ))}
             </div>
             <div id='topLineUnderPhoto'>
-            <div id='intro'>Beautiful spot hosted by {spot.Owner.firstName}</div>
+            <div id='intro'>Minimalist spot hosted by {spot.Owner.firstName}</div>
             <NavLink
             id='PostReviewLink'
             // style={{ textDecoration: 'none' }}
