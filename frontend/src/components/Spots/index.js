@@ -41,7 +41,7 @@ useEffect(() => {
                 </div>
                 <div
                 id='price'
-                >${spot.price} night </div>
+                >${spot.price}/night </div>
             </NavLink>
         ))}
     </div>
