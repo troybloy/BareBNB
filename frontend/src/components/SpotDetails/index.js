@@ -2,7 +2,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {useEffect} from 'react'
 import { getSpotById } from '../../store/spots';
-import {oneSpotsReviews} from '../../store/reviews'
+import {oneSpotReviews} from '../../store/reviews'
 import './spotDetails.css'
 
 const SpotDetail = () =>{
@@ -25,7 +25,7 @@ const reviews = Object.values(reviewsResponse)
 
 useEffect(() => {
     dispatch(getSpotById(spotId))
-    dispatch(oneSpotsReviews(spotId))
+    dispatch(oneSpotReviews(spotId))
 }, [dispatch, spotId])
 
 console.log('allreviews', reviews)
