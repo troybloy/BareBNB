@@ -73,9 +73,9 @@
     margin-right: 5px;
     margin-bottom: 15px;
 }
-.reviewDetails{
-    /* border-bottom: 2px solid lightgray; */
-}
+/* .reviewDetails{
+    border-bottom: 2px solid lightgray;
+} */
 
 #reviewStars{
     display: flex;
