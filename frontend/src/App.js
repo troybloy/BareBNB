@@ -9,6 +9,8 @@ import SpotDetail from './components/SpotDetails'
 import CreateSpot from "./components/CreateSpot";
 import CurrentUserSpots from "./components/CurrentUserSpots";
 import EditSpot from "./components/EditSpot";
+import UserReviews from "./components/UserReviews";
+import CreateReview from "./components/CreateReview";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,7 +21,7 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
+      <Navigation isLoaded={isLoaded}  />
       {isLoaded && (
         <Switch>
 
@@ -29,8 +31,17 @@ function App() {
             <HomePage />
           </Route>
 
+          <Route
+          exact
+          path='/reviews'>
+            <UserReviews />
+          </Route>
 
-
+          <Route
+          exact
+          path='/reviews/:spotId/new'>
+            <CreateReview />
+          </Route>
 
           <Route
           exact
@@ -55,7 +66,6 @@ function App() {
           path='/spots/:spotId'>
             <SpotDetail />
           </Route>
-          
 
         </Switch>
       )}
