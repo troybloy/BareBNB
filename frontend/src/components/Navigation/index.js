@@ -16,7 +16,7 @@ function Navigation({ isLoaded }){
         <NavLink
         id='HomeButtonNavLink'
         style={{ textDecoration: 'none' }}
-        exact to="/">BareBNB</NavLink>
+        exact to="/">barebnb</NavLink>
       </div>
       <div id='RightSide'>
 
@@ -26,7 +26,7 @@ function Navigation({ isLoaded }){
       style={{ textDecoration: 'none' }}
       exact to='/spots'
       onClick={disableNavLinks}
-      >BareBNB your home</NavLink>}
+      >Barebnb your home</NavLink>}
       {isLoaded && (
         <div id='ProfileButton'>
           <ProfileButton user={sessionUser} />
