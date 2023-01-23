@@ -32,3 +32,7 @@
     height:25px;
     border-radius: 5px;
 }
+
+#signup-error {
+    font-size: 1.3vw;
+}
