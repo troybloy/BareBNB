@@ -1,9 +1,10 @@
-.signup-header {
+.edit-spot-header {
     display: flex;
-    justify-content: center;
+    justify-content: center;;
+    margin: 25px;
 }
 
-.signup-form {
+.edit-spot-form{
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
@@ -12,35 +13,7 @@
     margin-top: 0px;
 }
 
-.signup-input-with-label {
-    display: flex;
-    flex-direction: column;
-    font-weight: bold;
-    justify-content: end;
-    margin: 15px;
-}
-
-.signup-input {
-    height: 50%;
-    margin: 0px;
-    /* align-items: center; */
-}
-
-.signup-user-button {
-    width: 100%;
-    height: 40px;
-    margin: 15px;
-    color: white;
-    background-color: brown;
-    border: none;
-    border-radius: 20px;
-    overflow: hidden;
-}
-.signup-button-container {
-    display: flex;
-    /* height: 50px; */
-}
-.signup-errors-container {
+.edit-a-spot-errors-container {
     display: flex;
     flex-direction: column;
     margin-left: 15px;
@@ -49,4 +22,32 @@
     margin-bottom: 0px;
     padding: 2px;
     justify-content: center;
+}
+
+.edit-a-spot-form-input-with-label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    justify-content: end;
+    margin: 15px;
+}
+
+.edit-a-spot-form-input {
+    height: 50%;
+    margin: 0px;
+}
+
+.edit-a-spot-button-container{
+    display: flex;
+}
+
+.edit-a-spot-form-button {
+    width: 100%;
+    height: 40px;
+    margin: 15px;
+    color: white;
+    background-color: brown;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
 }

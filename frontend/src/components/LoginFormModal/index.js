@@ -24,49 +24,50 @@ function LoginFormModal() {
       );
   };
 
-  const demoUserLogin = () =>{
-    setCredential('Demo-lition')
-    setPassword('password')
-    document.getElementById('logInButton').click()
+  const logInDemoUser = (e) => {
+    e.preventDefault()
+
+    // setCredential("demo@user.io")
+    // setPassword("password")
+    return dispatch(sessionActions.login({ credential: "demo@user.io", password: "password" }))
+      .then(closeModal)
   }
 
   return (
-
-    <div id='logInFull'>
-      <h1 id='logInTitle'>Log In</h1>
-      <form id= 'logInForm' onSubmit={handleSubmit}>
-        <ul>
+    <>
+      <h1 className="login-header">Log In</h1>
+      <form onSubmit={handleSubmit} className="login-form">
+        <ul className="login-errors-container">
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <li className="login-error" key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          {/* Username or Email */}
+        <label className="login-input-with-label">
           <input
-            id='usernameOrEmailField'
+            className="login-input"
+            placeholder="Username or Email"
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
-            placeholder='Username or Email'
           />
         </label>
-        <label>
-          {/* Password */}
+        <label className="login-input-with-label">
           <input
-            id='passwordField'
+            className="login-input"
+            placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            placeholder='Password'
           />
         </label>
-        <button id='logInButton' type="submit">Log In</button>
-        <button id='DemoUserButton' onClick={demoUserLogin} >Demo User</button>
+        <div className="demo-login-buttons">
+          <button className="login-user-button" type="submit">Log In</button>
+          <button className="demo-user-button" type="submit" onClick={logInDemoUser}>Demo-User</button>
+        </div>
       </form>
-      </div>
-
+    </>
   );
 }
 
