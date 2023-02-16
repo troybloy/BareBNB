@@ -31,81 +31,81 @@ function SignupFormModal() {
 
   return (
     <>
-    <div id='SignUpFormDiv'>
-      <h1 id='signUpTitle'>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => <div id="signup-error" key={idx}>{error}</div>)}
+      <h1 className="signup-header">Sign Up</h1>
+      <form onSubmit={handleSubmit} className="signup-form">
+        <ul className="signup-errors-container">
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
-        <div id='SignUpFormInputs'>
-        <label>
+        <label className="signup-input-with-label">
+          Email
           <input
-          id='SignUpemail'
+            className="signup-input"
+            placeholder="Email"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            placeholder='Email'
-          />
+            />
         </label>
-        <label>
-
+        <label className="signup-input-with-label">
+          Username
           <input
-          id='SignUpusername'
+            className="signup-input"
+            placeholder="Username"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
-            placeholder='Username'
-          />
+            />
         </label>
-        <label>
-
+        <label className="signup-input-with-label">
+          First Name
           <input
-          id='firstname'
+            className="signup-input"
+            placeholder="First Name"
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
-            placeholder='First Name'
-          />
+            />
         </label>
-        <label>
-
+        <label className="signup-input-with-label">
+          Last Name
           <input
-          id='lastname'
+            className="signup-input"
+            placeholder="Last Name"
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
-            placeholder='Last Name'
-          />
+            />
         </label>
-        <label>
-
+        <label className="signup-input-with-label">
+          Password
           <input
-          id='password'
+            className="signup-input"
+            placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            placeholder='Password'
-          />
+            />
         </label>
-        <label>
+        <label className="signup-input-with-label">
+          Confirm Password
           <input
-          id='confirmpassword'
+            className="signup-input"
+            placeholder="Confirm Password"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
-            placeholder='Confirm Password'
           />
         </label>
-        <button id='SignUpSubmit' type="submit">Sign Up</button>
+        <div className="signup-button-container">
+          <button className="signup-user-button" type="submit">Sign Up</button>
         </div>
       </form>
-      </div>
     </>
   );
 }

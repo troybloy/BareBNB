@@ -1,38 +1,64 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import OpenModalButton from '../OpenModalButton';
+import LoginFormModal from '../LoginFormModal';
+import SignupFormModal from '../SignupFormModal';
+import CreateSpotModal from '../SpotsIndex/CreateSpotModal';
 import './Navigation.css';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
-  const disableNavLinks = (e) => {
-    if(!sessionUser) e.preventDefault()
-  }
-  return (
-    <div id='NavBar'>
-      <div id='HomeButton'>
-        <NavLink
-        id='HomeButtonNavLink'
-        style={{ textDecoration: 'none' }}
-        exact to="/">barebnb</NavLink>
-      </div>
-      <div id='RightSide'>
-
-      {sessionUser &&
-      <NavLink
-      id='Hosting'
-      style={{ textDecoration: 'none' }}
-      exact to='/spots'
-      onClick={disableNavLinks}
-      >Barebnb your home</NavLink>}
-      {isLoaded && (
-        <div id='ProfileButton'>
+  let sessionLinks;
+  if (sessionUser) {
+    sessionLinks = (
+      <div className="logged-in-nav-buttons">
+        <div className="create-a-spot-button">
+          <OpenModalButton
+            buttonText="Create a Spot"
+            modalComponent={<CreateSpotModal />} />
+        </div>
+        <div className="view-all-reviews-button-container">
+          <Link to="/reviews/current">
+            <button className="view-all-reviews-button">View all Reviews</button>
+          </Link>
+        </div>
+        <div className="profile-button">
           <ProfileButton user={sessionUser} />
         </div>
-      )}
       </div>
+    );
+  } else {
+    sessionLinks = (
+      <span className="login-signup-buttons">
+        <div className="login-button">
+          <OpenModalButton
+            buttonText="Log In"
+            modalComponent={<LoginFormModal />}
+          />
+        </div>
+        <div className="signup-button">
+          <OpenModalButton
+            buttonText="Sign Up"
+            modalComponent={<SignupFormModal />}
+          />
+        </div>
+      </span>
+    );
+  }
+
+  return (
+    <div className="navButtons">
+      <div className="home-button-container">
+        <NavLink exact to="/">
+          <i className="fa-regular fa-b fa-2x">
+            <span className="home-button-text">barebnb</span>
+          </i>
+        </NavLink>
+      </div>
+      {isLoaded && sessionLinks}
     </div>
   );
 }

@@ -1,11 +1,9 @@
-.login-header {
+.create-spot-header {
     display: flex;
     justify-content: center;
-    margin-left: 15px;
-    margin-right: 15px;
 }
 
-.login-form {
+.create-spot-form {
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
@@ -14,40 +12,38 @@
     margin-top: 0px;
 }
 
-.login-input-with-label {
-    margin: 15px;
-    display: flex;
-    height: 30px;
-}
-.login-input {
-    width: 100%;
-}
-.demo-login-buttons {
+.create-spot-form-input-with-label {
     display: flex;
     flex-direction: column;
+    font-weight: bold;
+    justify-content: end;
     margin: 15px;
+    height: 40px;
 }
 
-.login-user-button {
+.create-spot-form-input {
+    height: 50%;
+    margin: 0px;
+}
+
+.create-button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.create-a-spot-form-button {
     width: 100%;
     height: 40px;
-    margin-bottom: 5px;
+    margin: 15px;
     color: white;
     background-color: brown;
     border: none;
     border-radius: 20px;
     overflow: hidden;
 }
-.demo-user-button {
-    width: 100%;
-    height: 40px;
-    margin-top: 5px;
-    color: white;
-    background-color: brown;
-    border: none;    border-radius: 20px;
-    overflow: hidden;
-}
-.login-errors-container {
+.create-a-spot-errors-container {
     display: flex;
     flex-direction: column;
     margin-left: 15px;

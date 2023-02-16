@@ -1,11 +1,8 @@
-.login-header {
+.create-review-header {
     display: flex;
     justify-content: center;
-    margin-left: 15px;
-    margin-right: 15px;
 }
-
-.login-form {
+.create-review-form{
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
@@ -13,41 +10,32 @@
     margin-right: 30px;
     margin-top: 0px;
 }
-
-.login-input-with-label {
+.create-review-input-with-label{
     margin: 15px;
     display: flex;
     height: 30px;
 }
-.login-input {
+
+.create-review-form-input {
     width: 100%;
-}
-.demo-login-buttons {
-    display: flex;
-    flex-direction: column;
-    margin: 15px;
 }
 
-.login-user-button {
+.create-review-form-input-button-container {
+    display: flex;
+}
+
+.create-review-form-input-button {
     width: 100%;
     height: 40px;
-    margin-bottom: 5px;
+    margin: 15px;
     color: white;
-    background-color: brown;
+    background-color: rgb(255, 56, 92);
     border: none;
     border-radius: 20px;
     overflow: hidden;
 }
-.demo-user-button {
-    width: 100%;
-    height: 40px;
-    margin-top: 5px;
-    color: white;
-    background-color: brown;
-    border: none;    border-radius: 20px;
-    overflow: hidden;
-}
-.login-errors-container {
+
+.create-reviews-errors-container{
     display: flex;
     flex-direction: column;
     margin-left: 15px;
