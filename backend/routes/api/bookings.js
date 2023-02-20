@@ -33,7 +33,7 @@ const bookingConflictChecker = (date1, date2, date3, date4) => {
     return errors;
 }
 
-// GET BOOKINGS
+// ======================== GET ALL CURRENT USER'S BOOKINGS =====================
 router.get('/current', requireAuth, async (req, res) => {
     const loggedInUserId = res.req.user.dataValues.id
     const bookingsQuery = await Booking.findAll({
@@ -66,7 +66,7 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json({Bookings: parsedBookingsQuery})
 })
 
-// EDIT BOOKINGs
+// =============================== Edit a Booking ==================================
 router.put('/:bookingId', requireAuth, async (req, res, next) => {
     const currentBookingId = Number(req.params.bookingId)
     const loggedInUserId = res.req.user.dataValues.id
@@ -75,7 +75,10 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
         attributes: ["id", "spotId", "userId", "startDate", "endDate", "createdAt", "updatedAt"],
         where: {id: currentBookingId}
     })
-
+    // console.log(`loggedInUserId: ${loggedInUserId}`)
+    // console.log(bookingQueryTest.toJSON().userId)
+    // console.log(bookingQueryTest.toJSON())
+    // ERROR HANDLER if the booking does not exist
     if (bookingQueryTest === null) {
         const err = new Error()
         err.message = "Booking couldn't be found";
@@ -83,6 +86,7 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
         err.statusCode = 404;
         return next(err)
     }
+    // ERROR HANDLER if the booking does not belong to the user
     if(bookingQueryTest.dataValues.userId !== loggedInUserId) {
         const err = new Error()
         err.message = "Booking must belong to the current User"
@@ -94,6 +98,7 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
     let todayMilliseconds = Date.now()
     const bookingEndDateJS = new Date(bookingQueryTest.dataValues.endDate).getTime()
 
+    // ERROR HANDLER if the booking is past its end date
     if (todayMilliseconds > bookingEndDateJS) {
         const err = new Error()
         err.message = "Past bookings can't be modified"
@@ -105,6 +110,7 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
     const { startDate, endDate } = req.body
     const startDateJS = new Date(startDate)
 
+    // ERROR HANDLER for body validations
     if (endDateChecker(startDate, endDate) === false) {
         const err = new Error()
         err.message = "Validation error"
@@ -117,6 +123,7 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
     let today = new Date()
 
 
+    // Error handler: There must not be a booking in this period
     const bookingQuery = await Booking.findAll({
         where: {
             spotId: bookingQueryTest.dataValues.spotId,
@@ -139,6 +146,7 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
             }
         }
     }
+    // Success Response
     bookingQueryTest.update({
         startDate, endDate, updatedAt: today
     })
@@ -147,7 +155,7 @@ router.put('/:bookingId', requireAuth, async (req, res, next) => {
 })
 
 
-// DELETE
+// ======================================= DELETE A BOOKING =================
 router.delete('/:bookingId', requireAuth, async (req, res, next) => {
     const currentBookingId = Number(req.params.bookingId)
     const loggedInUserId = res.req.user.dataValues.id
@@ -155,6 +163,7 @@ router.delete('/:bookingId', requireAuth, async (req, res, next) => {
     const bookingQueryTest = await Booking.findOne({
         where: {id: currentBookingId},
     })
+    // ERROR HANDLER if the booking doesn't exist
     if (bookingQueryTest === null) {
         const err = new Error()
         err.message = "Booking couldn't be found";
@@ -162,6 +171,7 @@ router.delete('/:bookingId', requireAuth, async (req, res, next) => {
         err.statusCode = 404;
         return next(err)
     }
+    // ERROR HANDLER if the logged in user is not the owner of the booking
     if (bookingQueryTest.dataValues.userId !== loggedInUserId)  {
         const err = new Error()
         err.message = "Booking must belong to the current User"
