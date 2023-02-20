@@ -2,91 +2,93 @@ const express = require('express')
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
-
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const e = require('express');
 
 const router = express.Router();
 
-
 const validateSignup = [
+  check('firstName')
+    .exists({ checkFalsy: true }),
+  check('lastName')
+    .exists({ checkFalsy: true }),
   check('email')
     .exists({ checkFalsy: true })
     .isEmail()
-    .withMessage('Invalid email'),
+    .withMessage('Please provide a valid email.'),
   check('username')
     .exists({ checkFalsy: true })
-    .withMessage('Username is required'),
-  check('firstName')
-  .exists({ checkFalsy: true })
-    .withMessage("First Name is required"),
-  check('lastName')
+    .isLength({ min: 4 })
+    .withMessage('Please provide a username with at least 4 characters.'),
+  check('username')
+    .not()
+    .isEmail()
+    .withMessage('Username cannot be an email.'),
+  check('password')
     .exists({ checkFalsy: true })
-    .withMessage("Last Name is required"),
+    .isLength({ min: 6 })
+    .withMessage('Password must be 6 characters or more.'),
   handleValidationErrors
 ];
 
-// took out validateSignup from params in post request, it went right after url
-// Sign up
+
+// ================================= Sign up =================================
 router.post(
-    '/', validateSignup,
-    async (req, res, next) => {
-      const { firstName, lastName, email, password, username } = req.body;
+  '/',
+  validateSignup,
+  async (req, res, next) => {
+    const { firstName, lastName, email, password, username } = req.body;
 
-      const notValidEmail = await User.findAll({
-        where:{
-          email
+    const userEmails = await User.findAll({
+      attributes: ["email"]
+    })
+    let emailObjList = []
+    userEmails.forEach(userEmail => {emailObjList.push(userEmail.toJSON()) })
+    let emailList = []
+    emailObjList.forEach(userEmail => {
+      emailList.push(Object.values(userEmail))
+    })
+
+    // EMAIL ERROR HANDLER
+    for (let userEmail of emailList) {
+      for (let currentEmail of userEmail) {
+        if (currentEmail === email) {
+          const err = new Error('User already exists')
+          err.errors = ["User with that email already exists"]
+          err.status = 403
+          return next(err)
         }
-      })
-      const notValidUsername = await User.findAll({
-        where: {
-          username
-        }
-      })
-      if(notValidEmail.length){
-        console.log(notValidEmail)
-        let err = new Error()
-        err.message = "User already exists"
-        err.statusCode = 403
-        err.errors = {
-          "email": "User with that email already exists"
-        }
-        next(err)
-
-      } else if(notValidUsername.length){
-        console.log(notValidUsername)
-        let err = new Error()
-        err.message = "User already exists"
-        err.statusCode = 403
-        err.errors = {
-          "username": "User with that username already exists"
-        }
-        next(err)
-
-      } else{
-      const user = await User.signup({ firstName, lastName, email, username, password });
-
-      const token = await setTokenCookie(res, user);
-
-      // console.log()
-
-      return res.json({
-        'id': user.id,
-        firstName,
-        lastName,
-        email,
-        username,
-        token
-      });
       }
-
     }
-  );
 
-  router.use((err, req, res, next) =>{
-    console.log(err)
-    res.statusCode = err.statusCode
-    res.send(err)
-  })
+    const userUsernames = await User.findAll({
+      attributes: ["username"]
+    })
+    let usernamesObjList = []
+    userUsernames.forEach(userUsername => {usernamesObjList.push(userUsername.toJSON()) })
+    let usernameList = []
+    usernamesObjList.forEach(userUsername => {usernameList.push(Object.values(userUsername))})
+
+    // USERNAME ERROR HANDLER
+    for (let userUsername of usernameList) {
+      for (let currentUsername of userUsername) {
+        if (currentUsername === username) {
+          const err = new Error("User already exists")
+          err.status = 403
+          err.errors = ["User with that username already exists"]
+          return next(err)
+        }
+      }
+    }
+
+    const user = await User.signup({ firstName, lastName, email, username, password });
+
+    const token = await setTokenCookie(res, user);
+    user.dataValues.token = token
+    return res.json({user: user});
+  }
+);
+
 
 module.exports = router;

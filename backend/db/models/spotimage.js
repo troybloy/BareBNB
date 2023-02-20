@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class SpotImage extends Model {
     /**
@@ -11,33 +12,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      SpotImage.belongsTo(models.Spot, { foreignKey: 'spotId' })
+      SpotImage.belongsTo(models.Spot, {foreignKey: 'spotId'})
     }
   }
   SpotImage.init({
-    spotId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    url: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    preview: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: false
-    }
+    spotId: DataTypes.INTEGER,
+    url: DataTypes.TEXT,
+    preview: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'SpotImage',
+    defaultScope: {
+      attributes: {
+        exclude: ["spotId", "createdAt", "updatedAt"]
+      }
+    },
   });
   return SpotImage;
 };
